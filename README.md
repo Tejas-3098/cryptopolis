@@ -8,10 +8,6 @@ This project was developed for the [ETHOnline 2023](https://ethglobal.com/events
 
 [![Cryptopolis presentation](https://img.youtube.com/vi/mrkqRfVU12s/0.jpg)](https://www.youtube.com/watch?v=mrkqRfVU12s)
 
-For a throughtout retrospective of SimCity, especially for those under the age of 40, I recommend watching the following video.
-
-[![SimCity 30 Year Later: A Retrospective](https://img.youtube.com/vi/TrScy1icWjI/0.jpg)](https://www.youtube.com/watch?v=YTrScy1icWjI)
-
 ## How it works
 
 Cryptopolis uses the exact same C++ engine of [Micropolis](https://github.com/SimHacker/micropolis), the open source version of SimCity Classic.
@@ -39,6 +35,24 @@ Once every "game year" taxes are collected, which now transfer funds from the `p
 In a nutshell, if the player does a good job he recovers the initial investment and make some profit. If the player does a bad job, he will lose money and eventually go bankrupt.
 
 If the `people` wallet runs out of funds, the global economy is in trouble. The game will stop working and the player will not be able to play anymore. However the application deployer can be in control of a token supply and donate more token to the `people`, which can be seen as a World Bank providing humanitarian support.
+
+### Hackathon Achievements
+
+For this hackathon, we used LAOS Network to tokenize the game state on Polkadot, allowing users to build their city and then sell or transfer it to another party. This enables players to profit from the work they've done in-game and the amazing city they built.
+
+As Sui is growing in the gaming industry, we also minted the game state as an NFT on Sui by writing a smart contract in Move. This was extremely complex, as we had to create a robust contract that could handle the unique requirements of game state data and ensure secure transactions.
+
+Together, these technologies enabled us to create a seamless experience for trading game states as NFTs, allowing players to continue gameplay from the exact point where another left off.
+
+In building the Cryptopolis project, we utilized key technologies from both Polkadot and Sui, two of our sponsors, which made the project uniquely possible.
+
+### Polkadot
+
+We leveraged the LAOS Network on Polkadot to mint the game state as an NFT. This involves uploading the metadata of the game state to IPFS using Pinata, and then minting the NFT on the LAOS Network, which supports bridgeless minting. This NFT can be listed on OpenSea, allowing other gamers to purchase it and continue the game from the state in which they bought it. The LAOS Network's seamless integration with IPFS and support for bridgeless minting were crucial features that enabled this functionality.
+
+### Sui
+
+We also minted the game state into a Sui NFT by writing a smart contract in Move, Sui's programming language. This involved creating a robust contract that could handle the unique requirements of game state data and ensure secure transactions. Sui's focus on scalability and performance, along with its support for the Move language, provided a reliable and efficient platform for this part of the project.
 
 ## Subprojects
 
@@ -117,16 +131,25 @@ pnpm run dev
 -   Go to http://localhost:3000/play/0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 -   Choose a map and create a game
 
+### Load a game
+
+-   Go to http://localhost:3000/play/0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+-   You can see 2 tabs, New City and Load City. Click on the Load City tab
+-   In the Save State field, enter the saved state information (numbers separated by a comma) that are stored as the NFT's attributes
+-   The game will then load from the exact saved state and you can continue building the city
+
 ## Future Improvements
 
-1. The simulation is currently running only as a Cartesi Rollups application. That means the game is not playable in absolute real-time, because only when a new input is received the game advances its simulation clock and updates its state. In order to run the game in real time we need to run it inside the browser, using the WebAssembly build of the Cartesi Machine, which is still [unmerged](https://github.com/cartesi/machine-emulator/pull/132) at the time of this writing.
-
-2. This is just a prototype, a lot of features are missing in the UI, and in how the player can interfere with the game simulation. For example, the engine supports changing the tax rate, which can help the city collect more funds but repel citizens.
+1. Create a Battle Option for Cities to fight against other cities and steal their resources.
+2. Implement other features the game engine supports (Disasters, Budget, Photos, etc.).
+3. Work on improving the game latency for a better UX.
+4. Implement a revenue model for the game to be profitable to operate and maintain.
+5. Look more into lower latency networks for deployment.
 
 ## Thanks
 
-Thanks to all the original coders for building these amazing toys.
+Special thanks to [tuler](https://github.com/tuler/) for building the game engine and the Web UI for Crpytopolis.
 
 Thanks to the awesome Cartesi community.
 
-Made with ❤️ by [tuler](https://github.com/tuler/). Long live open source! 🙌
+Made with ❤️ by [Tejas](https://github.com/Tejas-3098). Long live open source! 🙌
